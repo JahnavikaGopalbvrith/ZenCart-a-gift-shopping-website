@@ -1,0 +1,122 @@
+**MUGS DATABASE**
+CREATE TABLE prince (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    rating DECIMAL(3, 1) NOT NULL,
+	price DECIMAL(10, 2) NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
+    caption VARCHAR(255) NOT NULL
+);
+INSERT INTO prince (name, price, rating, image_url, caption)
+VALUES
+    ('Personalized Anniversary Mug', 300.00, 4.5, 'https://assets.winni.in/product/primary/2022/6/61356.jpeg?dpr=1&w=400', 'Personalized Anniversary Mug'),
+    ('Personalized Pencil Art Mug', 250.00, 4.0, 'https://assets.winni.in/product/primary/2024/2/94171.jpeg?dpr=1&w=400', 'Personalized Pencil Art Mug'),
+    ('Customized Photo Mug', 350.00, 4.7, 'https://assets.winni.in/product/primary/2022/5/60916.jpeg?dpr=1&w=400', 'Customized Photo Mug'),
+    ('Couple Valentine Day Mug', 300.00, 4.3, 'https://assets.winni.in/product/primary/2024/4/94747.jpeg?dpr=1&w=400', 'Couple Valentine Day Mug'),
+    ('Birthday Spotify Mug', 680.00, 4.2, 'https://assets.winni.in/product/primary/2022/3/58198.jpeg?dpr=1&w=400', 'Birthday Spotify Mug'),
+    ('Dream Photo Mug', 320.00, 4.6, 'https://assets.winni.in/product/primary/2022/5/60939.jpeg?dpr=1&w=400', 'Dream Photo Mug'),
+    ('Pink Teddy Love Combo', 300.00, 4.1, 'https://assets.winni.in/product/primary/2023/1/81575.jpeg?dpr=1&w=400', 'Pink Teddy Love Combo'),
+    ('Red Love Roses In A Mug', 310.00, 4.4, 'https://assets.winni.in/product/primary/2023/1/81588.jpeg?dpr=1&w=400', 'Red Love Roses In A Mug');
+select * from prin;
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**CUSHIONS DATABASE**
+CREATE TABLE cushionss (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    rating DECIMAL(3, 1) NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
+    caption VARCHAR(255) NOT NULL
+);
+INSERT INTO cushionss (name, price, rating, image_url, caption)
+VALUES
+    ('Birthday Personalized Cushion', 300.00, 4.5, 'https://assets.winni.in/product/primary/2021/11/55778.jpeg?dpr=1&w=400', 'Birthday Personalized Cushion'),
+    ('Spotify Birthday Cushion', 250.00, 4.0, 'https://assets.winni.in/product/primary/2022/3/58204.jpeg?dpr=1&w=400', 'Spotify Birthday Cushion'),
+    ('Sipper Bottle Cushion', 350.00, 4.7, 'https://assets.winni.in/product/primary/2024/5/95491.jpeg?dpr=1&w=400', 'Sipper Bottle Cushion'),
+    ('Handsome Cushion', 300.00, 4.3, 'https://assets.winni.in/product/primary/2021/11/55775.jpeg?dpr=1&w=400', 'Handsome Cushion'),
+    ('Couple Personalized Cushion', 280.00, 4.2, 'https://assets.winni.in/product/primary/2023/1/81429.jpeg?dpr=1&w=400', 'Couple Personalized Cushion'),
+    ('Anniversary Photo Cushion', 320.00, 4.6, 'https://assets.winni.in/product/primary/2022/6/61355.jpeg?dpr=1&w=400', 'Anniversary Photo Cushion'),
+    ('Couple Cushion', 300.00, 4.1, 'https://assets.winni.in/product/primary/2022/8/72659.jpeg?dpr=1&w=400', 'Couple Cushion'),
+    ('Personalized Cushion', 310.00, 4.4, 'https://assets.winni.in/product/primary/2023/1/81846.jpeg?dpr=1&w=400', 'Personalized Cushion');
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**BOTTLES DATABASE**
+CREATE TABLE water (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    rating DECIMAL(3, 1) NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
+    caption VARCHAR(255) NOT NULL
+);
+INSERT INTO water (name, price, rating, image_url, caption)
+VALUES
+    ('Personalised Couple Bottle', 400.00, 4.5, 'https://www.winni.in/personalised-couple-bottle/pd/35773?rfcid=1778&pos=1&dz=2','Personalised Couple Bottle'),
+    ('Personalised Led Temperature Bottle For Him', 350.00, 4.0, 'https://assets.winni.in/product/primary/2023/1/82069.jpeg?dpr=1&w=400','Personalised Led Temperature Bottle For Him'),
+    ('Stylish Flipsip Vacuum Brew Tumbler', 350.00, 4.7, 'https://assets.winni.in/product/primary/2024/5/95529.jpeg?dpr=1&w=400','Stylish Flipsip Vacuum Brew Tumbler'),
+    ('Personalised Mug With Sipper Bottle', 400.00, 4.3, 'https://assets.winni.in/product/primary/2024/5/95503.jpeg?dpr=1&w=400','Personalised Mug With Sipper Bottle'),
+    ('Radiant Colors Personalized Temperature Bottle', 380.00, 4.2, 'https://assets.winni.in/product/primary/2023/5/84657.jpeg?dpr=1&w=400','Radiant Colors Personalized Temperature Bottle'),
+    ('Portable Travel Brew Vacuum Mug', 420.00, 4.6, 'https://assets.winni.in/product/primary/2024/5/95539.jpeg?dpr=1&w=400','Portable Travel Brew Vacuum Mug'),
+    ('Sleek Silicone Covered Glass Bottle', 350.00, 4.1, 'https://assets.winni.in/product/primary/2024/2/94240.jpeg?dpr=1&w=400','Sleek Silicone Covered Glass Bottle'),
+    ('Premium Personalized Pen Keychain And Temperature Bottle', 410.00, 4.4, 'https://assets.winni.in/product/primary/2024/5/95419.jpeg?dpr=1&w=400','Premium Personalized Pen Keychain And Temperature Bottle');
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**KEYCHAIN DATABASE**
+
+CREATE TABLE keychain(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    rating DECIMAL(3, 1) NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
+    caption VARCHAR(255) NOT NULL
+);
+INSERT INTO keychain(name, price, rating, image_url, caption)
+VALUES
+    ('Personalised Couple Keychain', 400.00, 4.5, 'https://assets.winni.in/product/primary/2021/12/57310.jpeg?dpr=1&w=400','Personalised Couple Keychain'),
+    ('2D Heart Keychain Small', 350.00, 4.0, 'https://assets.winni.in/product/primary/2023/2/83065.jpeg?dpr=1&w=400','2D Heart Keychain Small'),
+    ('Acrylic Spotify Song Key Chain', 350.00, 4.7, 'https://assets.winni.in/product/primary/2022/1/57797.jpeg?dpr=1&w=400','Acrylic Spotify Song Key Chain'),
+    ('Personalized Pen And Keychain For Doctors', 400.00, 4.3, 'https://assets.winni.in/product/primary/2023/8/88989.jpeg?dpr=1&w=400','Personalized Pen And Keychain For Doctors'),
+    ('Personalized Keepsake Key Chain', 380.00, 4.2, 'https://assets.winni.in/product/primary/2024/4/95002.jpeg?dpr=1&w=400','Personalized Keepsake Key Chain'),
+    ('Shiny BikeMate Personalized Keychain', 420.00, 4.6, 'https://assets.winni.in/product/primary/2023/8/88527.jpeg?dpr=1&w=400','Shiny BikeMate Personalized Keychain'),
+    ('Personalised Couples Engraved Key Chain', 350.00, 4.1, 'https://assets.winni.in/product/primary/2024/4/94997.jpeg?dpr=1&w=400','Personalised Couples Engraved Key Chain'),
+    ('Personalised Pen And Key Chain', 410.00, 4.4, 'https://assets.winni.in/product/primary/2023/1/80830.jpeg?dpr=1&w=400','Personalised Pen And Key Chain');
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CLOCK DATABASE
+CREATE TABLE clock (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    rating DECIMAL(3, 1) NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
+    caption VARCHAR(255) NOT NULL
+);
+
+INSERT INTO clock (name, price, rating, image_url, caption)
+VALUES
+    ('Magical LED Clock', 400.00, 4.5, 'https://assets.winni.in/product/primary/2014/8/44035.jpeg?dpr=1&w=400', 'Magical LED Clock'),
+    ('Perfectly Personalized Square Wall Clock', 350.00, 4.0, 'https://assets.winni.in/product/primary/2014/8/38258.jpeg?dpr=1&w=400', 'Perfectly Personalized Square Wall Clock'),
+    ('Personalised Clock', 350.00, 4.7, 'https://assets.winni.in/product/primary/2014/8/35079.jpeg?dpr=1&w=400', 'Personalised Clock'),
+    ('Square Shape Design Sublimation Table Clock', 400.00, 4.3, 'https://assets.winni.in/product/primary/2022/9/74458.jpeg?dpr=1&w=400', 'Square Shape Design Sublimation Table Clock'),
+    ('Personalised Wooden Clock', 380.00, 4.2, 'https://assets.winni.in/product/primary/2014/8/46583.jpeg?dpr=1&w=400', 'Personalised Wooden Clock'),
+    ('Round Wood Framed Personalized Clock', 420.00, 4.6, 'https://assets.winni.in/product/primary/2014/10/53186.jpeg?dpr=1&w=400', 'Round Wood Framed Personalized Clock'),
+    ('Make Your Own Wall Clock', 350.00, 4.1, 'https://assets.winni.in/product/primary/2014/8/38252.jpeg?dpr=1&w=400', 'Make Your Own Wall Clock'),
+    ('Create Happy Moments Clock', 410.00, 4.4, 'https://assets.winni.in/product/primary/2014/8/38253.jpeg?dpr=1&w=400', 'Create Happy Moments Clock');
+------------------------------------------------------------------------------------------------------------------------------
+FORHIM DATABASE:
+CREATE TABLE  him(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    rating DECIMAL(3, 1) NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
+    caption VARCHAR(255) NOT NULL
+);
+INSERT INTO him (name, price, rating, image_url, caption)
+VALUES
+    ('Personalised Classy Mug', 299.00, 4.5, 'https://assets.winni.in/product/primary/2024/4/95152.jpeg?dpr=1&w=400','Personalised Classy Mug'),
+    ('Radiant Colors Personalized Temperature Bottle', 799.00, 4.5, 'https://assets.winni.in/product/primary/2023/5/84657.jpeg?dpr=1&w=400','Radiant Colors Personalized Temperature Bottle'),
+    ('Boy Personalised Cushion', 599.00, 4.7, 'https://assets.winni.in/product/primary/2022/8/72662.jpeg?dpr=1&w=400','Boy Personalised Cushion'),
+    ('Creative Blackforest Photo Cake', 899.00, 4.3, 'https://assets.winni.in/product/primary/2022/10/76245.png?dpr=1&w=400','Creative Blackforest Photo Cake'),
+    ('Fitness Freak', 499.00, 5.0, 'https://assets.winni.in/product/primary/2023/1/80870.jpeg?dpr=1&w=400','Fitness Freak'),
+    ('Personalized Led Halogram Lamp', 1099.00, 4.6, 'https://assets.winni.in/product/primary/2022/2/57892.jpeg?dpr=1&w=400','Personalized Led Halogram Lamp'),
+    ('Personalized keychain and pen', 549.00, 4.5, 'https://assets.winni.in/product/primary/2023/1/80830.jpeg?dpr=1&w=400','Personalized keychain and pen'),
+    ('Elegant Oil Paint Art', 299.00, 4.0, 'https://assets.winni.in/product/primary/2023/2/82717.jpeg?dpr=1&w=400','Elegant Oil Paint Art');
