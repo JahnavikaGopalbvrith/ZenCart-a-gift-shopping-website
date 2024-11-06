@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f8f8;
+    }
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .header .logo img {
+        height: 50px;
+    }
+    .header .search-bar {
+        flex-grow: 1;
+        margin: 0 10px;
+        position: relative;
+        max-width: 300px;
+    }
+    .header .search-bar input {
+        width: 100%;
+        padding: 10px 40px 10px 20px;
+        border: 1px solid #ddd;
+        border-radius: 25px;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+    .header .search-bar .search-icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+    .header .delivery-location {
+        margin-left: 20px;
+    }
+    .header .delivery-location button,
+    .header .user-info button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #555;
+        font-size: 14px;
+    }
+    .header .user-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    .header .user-info button span {
+        background: #e86b8a;
+        color: #fff;
+        border-radius: 50%;
+        padding: 5px 10px;
+        margin-left: 5px;
+    }
+    .header .user-info img {
+        height: 30px;
+        width: 30px;
+        border-radius:50%;
+    }
+    .nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background-color: #e86b8a;
+            color: #fff;
+            position: relative;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .nav a:hover {
+            color:purple;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            width: 800px; /* Adjust width as needed */
+            left: 0;
+            right: 0;
+            margin: auto;
+            color: #000;
+            padding: 20px;
+        }
+        .dropdown-content .dropdown-column {
+            float: left;
+            width: 25%; /* Adjust column width as needed */
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .dropdown-content .dropdown-column h3 {
+            margin-top: 0;
+            font-size: 16px;
+            font-weight: bold;
+            color: #e86b8a;
+        }
+        .dropdown-content .dropdown-column a {
+            color: #555;
+            text-decoration: none;
+            display: block;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+        .dropdown-content .dropdown-column a:hover {
+            color: #ff3366;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .nav .delivery-gifts {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .nav .delivery-gifts .vehicle {
+            height: 20px;
+            animation: moveVehicle 5s linear infinite;
+            margin-left: 5px;
+        }
+        .vehicle {
+            height: 30px;
+        }
+        .breadcrumbs {
+            padding: 10px 20px;
+            font-size: 14px;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+        .content {
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            border-radius: 8px;
+        }
+        .content h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .content h1 span {
+            color: #ff3366;
+        }
+        .filter-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .filter-bar input,
+        .filter-bar select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+        }
+        .filter-bar input:focus,
+        .filter-bar select:focus {
+            border-color: #ff3366;
+        }
+        .filter-bar .delivery-date label,
+        .filter-bar .filter-price label,
+        .filter-bar .sort-by label {
+            margin-right: 10px;
+            font-weight: bold;
+            color:#555;
+}
+
+:root {
+    --primary: #18253c;
+    /* --primary: #fff; */
+    --secondary: #e497bd;
+    --bg: #d1b7c6;
+    /* --bg: #f5f5f5; */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    overflow-x: hidden;
+}
+
+.slider {
+    background-color: white;
+    padding: 1rem;
+
+    margin: 7rem auto;
+    display: flex;
+    /* display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    place-items: center;
+    grid-gap: 2rem; */
+
+    font: normal 1rem sans-serif;
+}
+
+.card {
+    position: relative;
+    left:0;
+
+
+    min-width: 17rem;
+    height: 23rem;
+    background-color:var(--primary);
+    color: #fff;
+    border-radius: 1rem;
+    border: .1rem solid transparent;
+
+    box-shadow: 0 .2rem .6rem #0003;
+    transition: .5s ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+    .card {
+        min-width: 21rem;
+    }
+}
+
+.card:not(:first-child) {
+    margin-left: 2rem;
+}
+
+.card:first-child {
+    margin-left: .4rem;
+}
+
+.card:hover {
+    border: .1rem solid var(--secondary);
+    transform: scale(1.05);
+}
+
+
+.card-content {
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    
+    overflow: hidden;
+    border-radius: inherit;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.card-content::before, .card-content::after {
+    position: absolute;
+    content: "";
+    background-color: var(--secondary);
+    border-radius: 50%;
+    transition: .5s ease-in-out;
+}
+
+.card-content::before {
+    top: -6%;
+    right: -6%;
+    width: 9rem;
+    height: 9rem;
+}
+
+.card-content::after {
+    bottom: -6%;
+    left: -6%;
+    width: 5rem;
+    height: 5rem;
+}
+
+.card-content:hover::before {
+    transform: scale(1.8);
+}
+
+.card-content:hover::after {
+    transform: scale(0);
+}
+
+.card-img, 
+.card-title {
+    transform: translateY(4rem);
+    transition: .5s ease-in-out;
+}
+
+.card-img {
+    width: auto;
+    height: 9.5rem;
+}
+
+.card-title {
+    font-size: 1rem;
+    text-transform: capitalize;
+    transition-delay: .1s;
+}
+
+.card-body, 
+.card-footer {
+    transform: translateY(8rem);
+    transition: .5s ease-in-out;
+}
+
+.card-body {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    transition-delay: .2s;
+}
+
+.card:hover .card-img,
+.card:hover .card-title,
+.card:hover .card-body,
+.card:hover .card-footer {
+    transform: translateY(0);
+}
+
+.card-footer {
+    transition-delay: .3s;
+}
+
+.star {
+    font-size: 1.4rem;
+    color: gold;
+}
+
+.card-price {
+    font: bolder 1.5rem sans-serif;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    background-color: unset;
+    border: none;
+    outline: none;
+    border-radius: 2rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+
+
+.btn-success {
+    background-color: var(--secondary);
+    
+}
+
+.btn-border {
+    border: .1rem solid var(--secondary);
+}
+
+.arrow {
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    
+    width: 3rem;
+    height: 3rem;
+    background-color: #fff;
+    color: #000;
+
+    border-radius: 50%;
+    outline: .5rem solid transparent;
+    font: 800 1.5rem sans-serif;
+    text-align: center;
+    line-height: 3rem;
+    user-select: none;
+
+    cursor: pointer; 
+    transition: .5s ease-in-out;
+    
+    /* prevent from hiding when flying img animation take place */
+    z-index: 200;
+}
+
+.arrow:active {
+    background-color: #ddd;
+    /* background-color: #666; */
+}
+
+.left {
+    left: 1rem;
+}
+
+.right {
+    right: 1rem;
+}
+
+.shopping-cart {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+
+    width: 4rem;
+    height: 4rem;
+    background-color: #fff;
+    border-radius: 50%;
+    outline: .5rem solid transparent;
+    
+    text-align:center;
+    line-height: 4rem;
+
+    cursor: pointer;
+    box-shadow: 0 .2rem .6rem #0006;
+    transition: .5s ease-in-out;
+}
+
+.shopping-cart.active {
+    width: 8rem;
+    border-radius: .8rem;
+}
+
+.shopping-cart.active > span{
+    margin-left: -4rem;
+}
+
+.arrow:hover, .shopping-cart:hover {
+    outline: .5rem solid #fff5;
+}
+
+.shopping-cart::before {
+    position: absolute;
+    content: attr(data-product-count);
+
+    top: -.5rem;
+    right: -.5rem;
+
+    width: 2rem;
+    height: 2rem;
+
+    color: #fff;
+    background-color: #f00;
+    font-family: sans-serif;
+    
+    border-radius: 50%;
+    
+    text-align:center;
+    line-height: 2rem;
+}
+
+.cart-icon {
+    font-size: 2rem;
+    transition: .5s ease-in-out;
+}
+
+/* For Js Code */
+
+.flying-img {
+    position: absolute;
+    animation: fly_to_cart 1s ease-in-out;
+}
+
+@keyframes fly_to_cart {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    45%, 50% {
+        left: var(--left);
+        top: 60px;
+    }
+    80%, 90% {
+        left: var(--left);
+        top: var(--top);
+        transform: scale(.2);
+    }
+    100% {
+        left: calc(var(--left) + 40px);
+        top: var(--top);
+        transform: scale(.2);
+    }
+}
+*{
+    margin:0;
+    border:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    background-color:#f0e5ec;
+
+}
+.navbar{
+    height:100px;
+    background-color:#fddcf2;
+    padding: 0px 100px;
+    color:white;
+    display:flex;
+    align-items: center;
+}
+.nav-logo{
+    height:50px;
+    width: 250px;
+}
+.logo{
+    background-image: url("https://assets.winni.in/img/newlogo/logo-test-36-CL-1.png");
+    background-size:cover;
+    height:75px;
+    width:150px;
+}
+.navbar1{
+    height:40px;
+    background-color: #a8a8a8;
+    display:flex;
+    align-items:center;
+    font-display: left ;
+    padding-top: 10px;
+}
+.logo1{
+    background-image: url("https://assets.winni.in/groot/2023/11/20/desktop/scooter-animation-fifth.gif");
+    background-color: #a8a8a8;
+    display:flex;
+    align-items: right;
+
+}
+
+.border:hover{
+    border:1px solid white;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+
+
+/* Modal styles */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    max-width: 300px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.form-group button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.form-group button:hover {
+    background-color: #45a049;
+}
+
+.switch-modal {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.switch-modal a {
+    color: #007BFF;
+    cursor: pointer;
+} 
+.profile-dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    .profile-dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        right: 0;
+        padding: 10px;
+        border-radius: 4px;
+        width: 200px; /* Adjust width as needed */
+    }
+    .profile-dropdown-content h2 {
+        margin: 0;
+        padding: 10px 0;
+        font-size: 16px;
+        color: #333;
+    }
+    .profile-dropdown-content p {
+        margin: 0;
+        padding: 5px 0 10px;
+        font-size: 14px;
+        color: #777;
+    }
+    .profile-dropdown-content a {
+        color: #555;
+        text-decoration: none;
+        display: block;
+        padding: 5px 0;
+        transition: color 0.3s ease;
+    }
+    .profile-dropdown-content a:hover {
+        color: #ff3366;
+    }
+    .profile-dropdown:hover .profile-dropdown-content {
+        display: block;
+    }
+    .profile-dropdown-content .signup-login {
+        color: #ff3366;
+        font-weight: bold;
+        text-decoration: none;
+        display: block;
+        padding: 5px 0 15px;
+    }  
+    body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .reviews {
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .reviews h2 {
+            margin-bottom: 10px;
+        }
+        .rating {
+            font-size: 2em;
+            color: #f0c040;
+        }
+        .stars {
+            color: #f0c040;
+        }
+        .reviews .stars::after {
+            content: "★★★★★";
+        }
+        .reviews .review-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .review {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 10px;
+            width: 150px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .review .name {
+            font-weight: bold;
+            margin-top: 10px;
+        }  
+
+        .feedback-section {
+    text-align: center;
+    margin-top: 20px;
+    
+}
+
+.feedback-section p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.feedback-section button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.feedback-section button:hover {
+    background-color: #45a049;
+}
+
+.feedback-form {
+    display: none;
+    margin-top: 20px;
+    text-align: center;
+
+}
+
+.feedback-form h2 {
+    margin-bottom: 10px;
+}
+
+.feedback-form textarea {
+    width: 80%;
+    max-width: 400px;
+    height: 100px;
+    resize: vertical;
+}
+
+body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .heading {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .section {
+            margin: 10px 0;
+        }
+        .section a {
+            color: #007bff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: left;
+            padding: 20px 0;
+        }
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+        }
+        .footer-top div {
+            text-align: center;
+            flex: 1;
+        }
+        .footer-top div img {
+            width: 50px;
+            display: block;
+            margin: 0 auto 10px;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+        }
+        .footer-links div {
+            flex: 1;
+            margin: 0 10px;
+        }
+        .footer-links div strong {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .footer-links div a {
+            display: block;
+            color: #007bff;
+            text-decoration: none;
+            margin-bottom: 5px;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #ddd;
+        }
+        .footer-bottom img {
+            width: 100px;
+            margin: 0 10px;
+        }
+        .footer-bottom .social-icons img {
+            width: 25px;
+            margin: 0 5px;
+        }
+
+    </style>
+
+<body>
+    <header>
+    <div class="header">
+        <div class="logo">
+            <img src="logo.png" alt="">
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for gifts">
+            <div class="search-icon">🔍</div>
+        </div>
+        <div class="delivery-location">
+            <button>Delivery Location</button>
+        </div>
+        <div class="user-info">
+            <button>Help</button>
+            <button>Currency - INR</button>
+            <button>Corporate Gifts</button>
+            <button>Track Order</button>
+            <div class="profile-dropdown">
+                <img src="https://st2.depositphotos.com/2668729/6278/v/600/depositphotos_62783141-stock-illustration-male-avatar-icon-on-white.jpg" alt="Profile">
+                <div class="profile-dropdown-content">
+                    <h2>Welcome</h2>
+                    <p>To access account and manage orders</p>
+                    <a href="#" class="signup-login">Signup/Login</a>
+                    <a href="#">My Winni</a>
+                    <a href="#">My Orders</a>
+                    <a href="#">My Address Book</a>
+                    <a href="#">My Wallet</a>
+                    <a href="#">My Reminder</a>
+                </div>
+            </div>
+            <button><span>0</span> ❤</button>
+            <button><span>0</span> 🛒</button>
+        </div>
+    </div>
+    <div class="nav">
+        <a href="#" class="express">EXPRESS</a>
+        <a href="#">CAKES</a>
+        <a href="#">FLOWERS</a>
+        <a href="#">PLANTS</a>
+        <a href="#">GIFTS</a>
+        <div class="dropdown">
+            <a href="#" class="dropbtn">PERSONALIZED GIFTS</a>
+            <div class="dropdown-content">
+                <div class="dropdown-column">
+                    <h3>Personalized Gifts</h3>
+                    <a href="#">Mugs</a>
+                    <a href="#">Cushions</a>
+                    <a href="#">Water Bottles</a>
+                    <a href="#">Key Chains</a>
+                    <a href="#">Clocks</a>
+                    <a href="#">Chocolates</a>
+                    <a href="#">Engraved Gifts</a>
+                    <a href="#">T-Shirts</a>
+                    <a href="#">Stationary Gifts</a>
+                    <a href="#">Personalized Accessories</a>
+                </div>
+                <div class="dropdown-column">
+                    <h3>Special Gifts</h3>
+                    <a href="#">New Arrival</a>
+                    <a href="#">Photo Frames</a>
+                    <a href="#">LED Frames</a>
+                    <a href="#">Photo To Art</a>
+                    <a href="#">Caricatures</a>
+                    <a href="#">Personalised Combos</a>
+                </div>
+                <div class="dropdown-column">
+                    <h3>By Recipients</h3>
+                    <a href="#">For Her</a>
+                    <a href="#">For Him</a>
+                    <a href="#">For Husband</a>
+                    <a href="#">For Wife</a>
+                    <a href="#">For Kids</a>
+                    <a href="#">For Couples</a>
+                </div>
+                <div class="dropdown-column">
+                    <h3>By Occasions</h3>
+                    <a href="#">Birthday Gifts</a>
+                    <a href="#">Anniversary</a>
+                    <a href="#">Wedding Gifts</a>
+                    <a href="#">Love & Romance</a>
+                </div>
+            </div>
+        </div>
+        <a href="#">CHOCOLATES</a>
+        <a href="#">COMBOS</a>
+        <a href="#">BIRTHDAY</a>
+        <a href="#">ANNIVERSARY</a>
+        <a href="#">OCCASIONS</a>
+
+        <div class="delivery-gifts">
+            <img src="https://assets.winni.in/groot/2023/11/20/desktop/scooter-animation-fifth.gif" alt="Vehicle" class="vehicle">
+        </div>
+    </div>
+
+    <div class="breadcrumbs">
+        <a href="#">Home</a> &gt; <a href="#">Personalized Gifts</a> &gt; Clocks
+    </div>
+
+    <div class="content">
+        <h1>Explore our <span>Personalised Clocks</span></h1>
+        <div class="filter-bar">
+            <div class="delivery-date">
+                <label for="delivery-date">Delivery Date:</label>
+                <input type="date" id="delivery-date">
+            </div>
+            <div class="filter-price">
+                <label for="filter-price">Filter by Price:</label>
+                <select id="filter-price">
+                    <option value="all">All Products</option>
+                    <option value="low">499 and Below</option>
+                    <option value="high">500-999</option>
+                    <option value="high">1000-1499</option>
+                    <option value="high">1500-2499</option>
+                    <option value="high">2500 and Above</option>
+
+
+                </select>
+            </div>
+            <div class="sort-by">
+                <label for="sort-by">Sort by:</label>
+                <select id="sort-by">
+                    <option value="popularity">Popularity</option>
+                    <option value="rating">Price - Low to High</option>
+                    <option value="newest">Price - High to Low</option>
+                    <option value="newest">Bestseller</option>
+                    <option value="newest">Premium</option>
+                    <option value="newest">Trending</option>
+
+                </select>
+            </div>
+</div>
+    </header>
+    <section class="slider">
+        <div class="card">
+
+            <div class="card-content">
+                <img src="https://assets.winni.in/product/primary/2024/2/93897.jpeg?dpr=1&w=400" alt="" class="card-img">
+                <h1 class="card-title">Teddy</h1>
+                <div class="card-body">
+                    <div class="card-star">
+                        <span class="rating-value">4.5</span>
+                        <span class="star">&#9733;</span>
+                    </div>
+                    <p class="card-price"><i class="fa-solid fa-indian-rupee-sign"></i>650.99</p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-success">Buy Now</button>
+                    <button class="btn btn-border add-to-cart">Add To Wishlist</button>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <img src="https://assets.winni.in/product/primary/2014/10/50190.jpeg?dpr=1&w=400" alt="" class="card-img">
+                <h1 class="card-title">Bamboo Pot</h1>
+                <div class="card-body">
+                    <div class="card-star">
+                        <span class="rating-value">4</span>
+                        <span class="star">&#9733;</span>
+                    </div>
+                    <p class="card-price"><i class="fa-solid fa-indian-rupee-sign"></i>550.99</p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-success">Buy Now</button>
+                    <button class="btn btn-border add-to-cart">Add To Wishlist</button>
+                    
+                    
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <img src="https://assets.winni.in/product/primary/2023/8/88681.jpeg?dpr=1&w=400" alt="" class="card-img">
+                <h1 class="card-title">Yardley London</h1>
+                <div class="card-body">
+                    <div class="card-star">
+                        <span class="rating-value">4.6</span>
+                        <span class="star">&#9733;</span>
+                    </div>
+                    <p class="card-price"><i class="fa-solid fa-indian-rupee-sign"></i>750.99</p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-success">Buy Now</button>
+                    <button class="btn btn-border add-to-cart">Add To Wishlist</button>
+                    
+                    
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <img src="https://assets.winni.in/product/primary/2022/3/58204.jpeg?dpr=1&w=400" alt="" class="card-img">
+                <h1 class="card-title">Lovely Cushion</h1>
+                <div class="card-body">
+                    <div class="card-star">
+                        <span class="rating-value">4.7</span>
+                        <span class="star">&#9733;</span>
+                    </div>
+                    <p class="card-price"><i class="fa-solid fa-indian-rupee-sign"></i>710.99</p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-success">Buy Now</button>
+                    <button class="btn btn-border add-to-cart">Add To Wishlist</button>
+                    
+                    
+
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+
+        <span class="arrow left">&#129120;</span>
+        <span class="arrow right">&#129122;</span>
+
+    </section>
+    <section class="slider">
+        <div class="card">
+
+            <div class="card-content">
+                <img src="https://assets.winni.in/product/primary/2023/2/82885.jpeg?dpr=1&w=400" alt="" class="card-img">
+                <h1 class="card-title">Rose Gold</h1>
+                <div class="card-body">
+                    <div class="card-star">
+                        <span class="rating-value">4.5</span>
+                        <span class="star">&#9733;</span>
+                    </div>
+                    <p class="card-price"><i class="fa-solid fa-indian-rupee-sign"></i>650.99</p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-success">Buy Now</button>
+                    <button class="btn btn-border add-to-cart">Add To Wishlist</button>
+                    
+                    
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <img src="https://assets.winni.in/product/primary/2023/8/88989.jpeg?dpr=1&w=400" alt="" class="card-img">
+                <h1 class="card-title">Pen And Keychain</h1>
+                <div class="card-body">
+                    <div class="card-star">
+                        <span class="rating-value">4</span>
+                        <span class="star">&#9733;</span>
+                    </div>
+                    <p class="card-price"><i class="fa-solid fa-indian-rupee-sign"></i>550.99</p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-success">Buy Now</button>
+                    <button class="btn btn-border add-to-cart">Add To Wishlist</button>
+                    
+                    
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <img src="https://assets.winni.in/product/primary/2023/10/91286.jpeg?dpr=1&w=400" alt="" class="card-img">
+                <h1 class="card-title">Photo Rotating</h1>
+                <div class="card-body">
+                    <div class="card-star">
+                        <span class="rating-value">4.6</span>
+                        <span class="star">&#9733;</span>
+                    </div>
+                    <p class="card-price"><i class="fa-solid fa-indian-rupee-sign"></i>750.99</p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-success">Buy Now</button>
+                    <button class="btn btn-border add-to-cart">Add To Wishlist</button>
+                    
+                    
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <img src="https://assets.winni.in/product/primary/2024/4/94821.jpeg?dpr=1&w=400" alt="" class="card-img">
+                <h1 class="card-title">My Mom My World</h1>
+                <div class="card-body">
+                    <div class="card-star">
+                        <span class="rating-value">4.7</span>
+                        <span class="star">&#9733;</span>
+                    </div>
+                    <p class="card-price"><i class="fa-solid fa-indian-rupee-sign"></i>710.99</p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-success">Buy Now</button>
+                    <button class="btn btn-border add-to-cart">Add To Wishlist</button>
+                    
+                    
+
+                </div>
+            </div>
+        </div>
+        
+        <span class="arrow left">&#129120;</span>
+        <span class="arrow right">&#129122;</span>
+
+    </section>
+    <div class="shopping-cart" data-product-count="0">
+        <span class="cart-icon">❤</span>
+    </div>
+
+    <div class="feedback-section">
+        <p>Did you find what you were looking for?</p>
+        <button id="yesButton">Yes</button>
+        <button id="noButton">No</button>
+    </div>
+    <div id="feedbackForm" class="feedback-form">
+        <h2>Feedback Form</h2>
+        <form action="/submit-feedback" method="post">
+            <label for="feedback">Your feedback is highly valuable for us</label><br>
+            <textarea id="feedback" name="feedback" rows="4" cols="50"></textarea><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+<footer>
+
+    <div class="reviews">
+        <h2>What our customers say</h2>
+        <p>Our ratings reflect the experiences and satisfaction of verified customers who have made purchases on our platform.</p>
+        <div class="rating">
+            4.6/5
+        </div>
+        <div class="stars"></div>
+        <p>99 reviews</p>
+        <div class="review-list">
+            <div class="review">
+                <p>I m happy to buy this. They have modified to as per my instructio...</p>
+                <div class="stars"></div>
+                <div class="name">shubham</div>
+            </div>
+            <div class="review">
+                <p>I was ordering this LED watch from winni for my friend. I am...</p>
+                <div class="stars"></div>
+                <div class="name">Vikas</div>
+            </div>
+            <div class="review">
+                <p>Best gift. amazing quality, worth for money...</p>
+                <div class="stars"></div>
+                <div class="name">vikram</div>
+            </div>
+            <div class="review">
+                <p>Very nice product. I ordered this for my sister. Photos look...</p>
+                <div class="stars"></div>
+                <div class="name">Naina</div>
+            </div>
+            <div class="review">
+                <p>Very great product.</p>
+                <div class="stars"></div>
+                <div class="name">Shubham Kaushik</div>
+            </div>
+            <div class="review">
+                <p>The product outcome is excellent. It is small in size and light...</p>
+                <div class="stars"></div>
+                <div class="name">kritika</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="heading">Find more products</div>
+        
+        <div class="section">
+            <strong>UPCOMING OCCASIONS :</strong>
+            <a href="#">Parent's Day</a>|
+            <a href="#">Friendship Day</a>|
+            <a href="#">Independence Day</a>
+        </div>
+        
+        <div class="section">
+            <strong>TOP SEARCHES :</strong>
+            <a href="#">Cake Delivery</a>|
+            <a href="#">Flowers Delivery</a>|
+            <a href="#">Gifts Delivery</a>|
+            <a href="#">Eggless Cakes Plant Delivery</a>|
+            <a href="#">Personalised Gifts</a>|
+            <a href="#">Chocolates Delivery</a>
+        </div>
+        
+        <div class="section">
+            <strong>MOST SEARCHED ON WINNI :</strong>
+            <a href="#">Birthday Cake</a>|
+            <a href="#">Birthday Flowers</a>|
+            <a href="#">Birthday Gifts</a>|
+            <a href="#">Personalised Gifts</a>
+        </div>
+        
+        <div class="section">
+            <strong>ANNIVERSARY :</strong>
+            <a href="#">Anniversary Cake</a>|
+            <a href="#">Anniversary Flowers</a>|
+            <a href="#">Anniversary Gifts</a>
+        </div>
+        
+        <div class="section">
+            <strong>TOP CAKE CITIES :</strong>
+            <a href="#">Cake Delivery in Bangalore</a>|
+            <a href="#">Cake Delivery in Delhi</a>|
+            <a href="#">Cake Delivery in Mumbai</a>|
+            <a href="#">Cake Delivery in Pune</a>|
+            <a href="#">Cake Delivery in Gurgaon</a>|
+            <a href="#">Cake Delivery in Hyderabad</a>|
+            <a href="#">Cake Delivery in Chennai</a>|
+            <a href="#">Cake Delivery in Kolkata</a>|
+            <a href="#">Cake Delivery in Noida</a>|
+            <a href="#">Cake Delivery in Ahmedabad</a>|
+            <a href="#">Cake Delivery in Chandigarh</a>|
+            <a href="#">Cake Delivery in Jaipur</a>|
+            <a href="#">Cake Delivery in Dehradun</a>|
+            <a href="#">Cake Delivery in Patna</a>|
+            <a href="#">Cake Delivery in Vizag</a>|
+            <a href="#">Cake Delivery in Bhopal</a>|
+            <a href="#">Cake Delivery in Nagpur</a>|
+            <a href="#">Cake Delivery in Indore</a>|
+            <a href="#">Cake Delivery in Agra</a>|
+            <a href="#">Cake Delivery in Lucknow</a>
+        </div>
+        
+        <div class="section">
+            <strong>TOP FLOWER CITIES :</strong>
+            <a href="#">Flowers Delivery in Bangalore</a>|
+            <a href="#">Flowers Delivery in Delhi</a>|
+            <a href="#">Flowers Delivery in Mumbai</a>|
+            <a href="#">Flowers Delivery in Pune</a>|
+            <a href="#">Flowers Delivery in Gurgaon</a>|
+            <a href="#">Flowers Delivery in Hyderabad</a>|
+            <a href="#">Flowers Delivery in Chennai</a>|
+            <a href="#">Flowers Delivery in Kolkata</a>|
+            <a href="#">Flowers Delivery in Noida</a>|
+            <a href="#">Flowers Delivery in Ahmedabad</a>|
+            <a href="#">Flowers Delivery in Chandigarh</a>|
+            <a href="#">Flowers Delivery in Jaipur</a>|
+            <a href="#">Flowers Delivery in Dehradun</a>|
+            <a href="#">Flowers Delivery in Patna</a>|
+            <a href="#">Flowers Delivery in Vizag</a>|
+            <a href="#">Flowers Delivery in Bhopal</a>|
+            <a href="#">Flowers Delivery in Nagpur</a>|
+            <a href="#">Flowers Delivery in Indore</a>|
+            <a href="#">Flowers Delivery in Agra</a>|
+            <a href="#">Flowers Delivery in Lucknow</a>
+        </div>
+        
+        <div class="section">
+            <strong>TOP GIFT CITIES :</strong>
+            <a href="#">Gifts Delivery in Bangalore</a>|
+            <a href="#">Gifts Delivery in Delhi</a>|
+            <a href="#">Gifts Delivery in Mumbai</a>|
+            <a href="#">Gifts Delivery in Pune</a>|
+            <a href="#">Gifts Delivery in Gurgaon</a>|
+            <a href="#">Gifts Delivery in Hyderabad</a>|
+            <a href="#">Gifts Delivery in Chennai</a>|
+            <a href="#">Gifts Delivery in Kolkata</a>|
+            <a href="#">Gifts Delivery in Noida</a>|
+            <a href="#">Gifts Delivery in Ahmedabad</a>|
+            <a href="#">Gifts Delivery in Chandigarh</a>|
+            <a href="#">Gifts Delivery in Jaipur</a>|
+            <a href="#">Gifts Delivery in Dehradun</a>|
+            <a href="#">Gifts Delivery in Patna</a>|
+            <a href="#">Gifts Delivery in Vizag</a>|
+            <a href="#">Gifts Delivery in Bhopal</a>|
+            <a href="#">Gifts Delivery in Nagpur</a>|
+            <a href="#">Gifts Delivery in Indore</a>|
+            <a href="#">Gifts Delivery in Agra</a>|
+            <a href="#">Gifts Delivery in Lucknow</a>
+        </div>
+        
+        <div class="section">
+            <strong>Gift Ideas By Festivals and Special Occasions :</strong>
+            <a href="#">Bhai Dooj</a>|
+            <a href="#">Children's Day</a>|
+            <a href="#">Christmas</a>|
+            <a href="#">Diwali Gifts</a>|
+            <a href="#">Father's Day</a>|
+            <a href="#">Friendship Day</a>|
+            <a href="#">Holi</a>|
+            <a href="#">Independence Day</a>|
+            <a href="#">Karva Chauth Gifts</a>|
+            <a href="#">Lohri</a>|
+            <a href="#">Makar Sankranti</a>|
+            <a href="#">Mother's Day</a>|
+            <a href="#">New Year</a>|
+            <a href="#">Parent's Day</a>|
+            <a href="#">Rakshabandhan</a>|
+            <a href="#">Republic Day</a>|
+            <a href="#">Teacher's Day</a>|
+            <a href="#">Valentine's Day Gifts</a>|
+            <a href="#">Women's Day</a>
+        </div>
+        
+        
+    </div>
+
+    <div class="container">
+        <div class="footer-top">
+            <div>
+                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTggK9jbqs_duwa94HvuEmPXXD7bUgJdJvbFojOLyl4FKBKN2KE" alt="Cities Icon">
+                <strong>700+ Cities</strong>
+                <span>Happily Delivering</span>
+            </div>
+            <div>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT75uonX-MNcgKSLNZjJiEwzazhni47HwgmxotQViVxlr9H4X0TMOBY9PgpeqA7Cu9yI4M&usqp=CAU" alt="Secure Payments Icon">
+                <strong>100% Secure Payments</strong>
+                <span>All Major Credit & Debit Cards Accepted</span>
+            </div>
+            <div>
+                <img src="https://cdn.vectorstock.com/i/500p/61/14/customer-service-icon-support-manager-vector-9416114.jpg" alt="Customers Icon">
+                <strong>20,000,000</strong>
+                <span>Customers Across The World</span>
+            </div>
+        </div>
+        <div class="footer-links">
+            <div>
+                <strong>Our Company</strong>
+                <a href="#">About Us</a>
+                <a href="#">Careers</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Affiliate Program</a>
+                <a href="#">In News</a>
+            </div>
+            <div>
+                <strong>Quick Links</strong>
+                <a href="#">Wishes</a>
+                <a href="#">Sitemap</a>
+                <a href="#">Customer Reviews</a>
+                <a href="#">Blog - Celebrate Relations</a>
+                <a href="#">Corporate Order</a>
+                <a href="#">Franchise Enquiry</a>
+            </div>
+            <div>
+                <strong>Policy & Security</strong>
+                <a href="#">FAQ</a>
+                <a href="#">Refund Policy</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Bug Bounty</a>
+                <a href="#">Data Security</a>
+                <a href="#">Cancellation Policy</a>
+                <a href="#">Terms And Conditions</a>
+                <a href="#">Payments And Security</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>
+                <strong>Connect with Us</strong>
+                <div class="social-icons">
+                    <a href="#"><img src="https://assets.winni.in/groot/2023/07/19/desktop/facebook.png" alt="Facebook"></a>
+                    <a href="#"><img src="https://assets.winni.in/groot/2023/07/19/desktop/instagram.png" alt="Instagram"></a>
+                    <a href="#"><img src="https://assets.winni.in/groot/2023/07/19/desktop/youtube.png" alt="YouTube"></a>
+                    <a href="#"><img src="https://assets.winni.in/groot/2023/07/19/desktop/linkdin.png" alt="LinkedIn"></a>
+                    <a href="#"><img src="https://assets.winni.in/groot/2023/12/14/desktop/twiter.png" alt="Twitter"></a>
+                    <a href="#"><img src="https://assets.winni.in/groot/2024/04/23/mobile/black-whatsapp-icon.png" alt="WhatsApp"></a>
+                </div>
+            </div>
+            <div>
+                <span>© 2013 - 2024 Winni.in. All Rights Reserved</span>
+            </div>
+            <div>
+                <strong>Experience Winni on mobile</strong>
+                <a href="#"><img src="https://assets.winni.in/groot/2023/07/19/desktop/google-play.png" alt="Google Play"></a>
+                <a href="#"><img src="https://assets.winni.in/groot/2023/07/19/desktop/app-store.png" alt="App Store"></a>
+            </div>
+        </div>
+    </div>
+
+</footer>
+    <!-- Delivery Location Modal, Login and Sign-Up Modals -->
+    <!-- Include your existing modals and scripts here -->
+
+    <script src="addtocart.js"></script>
+    <script>
+        // Function to trigger the animation and update the cart count
+        function addToCart(button) {
+            // Clone the product image
+            var img = button.parentNode.parentNode.querySelector('.card-img').cloneNode(true);
+            img.style.width = '50px'; // Adjust size as needed
+
+            // Append cloned image to body for animation
+            document.body.appendChild(img);
+
+            // Calculate position difference
+            var imgRect = img.getBoundingClientRect();
+            var cartIcon = document.querySelector('.shopping-cart .cart-icon');
+            var cartRect = cartIcon.getBoundingClientRect();
+
+            var deltaX = cartRect.left - imgRect.left;
+            var deltaY = cartRect.top - imgRect.top;
+
+            // Apply animation
+            img.style.position = 'fixed';
+            img.style.transition = 'transform 0.5s ease-out, opacity 0.5s ease-out';
+            img.style.transform = 'translate(' + deltaX + 'px, ' + deltaY + 'px)';
+            img.style.opacity = '0';
+
+            // Remove the image from DOM after animation
+            img.addEventListener('transitionend', function () {
+                img.parentNode.removeChild(img);
+            });
+
+            // Update cart count (example)
+            var cartCount = document.querySelector('.shopping-cart').getAttribute('data-product-count');
+            cartCount++;
+            document.querySelector('.shopping-cart').setAttribute('data-product-count', cartCount);
+        }
+    </script>
+    <script>/* 
+        Fly To 🛒 Shopping Cart Animation With Vanilla JavaScript
+        👨🏻‍⚕ By: Coding Design
+        
+        You can do whatever you want with the code. However if you love my content, you can subscribed my YouTube Channel
+        🌎link: www.youtube.com/codingdesign
+        */
+        
+        const cards = document.querySelectorAll('.card');
+        const right_arrow = document.querySelector('.arrow.right');
+        const left_arrow = document.querySelector('.arrow.left');
+        
+        const shopping_cart = document.querySelector('.shopping-cart');
+        const cart_btns = document.querySelectorAll('.add-to-cart');
+        
+        let left = 0;
+        let card_size = 25.4;
+        let total_card_size = cards.length * card_size - card_size * 4;
+        
+        if (window.matchMedia('(max-width: 768px)').matches) {
+            card_size = 52;
+            total_card_size = cards.length * card_size - card_size * 2;
+        }
+        
+        left_arrow.onclick = () => {
+            left -= card_size;
+        
+            if (left <= 0) left = 0;
+            moveCards(left);
+            checkArrowVisibility(left);
+        }
+        
+        left_arrow.style.opacity = '0';
+        
+        right_arrow.onclick = () => {
+            left += card_size;
+        
+            if (left >= total_card_size) left = total_card_size;
+            moveCards(left);
+            checkArrowVisibility(left);
+        }
+        
+        function moveCards(left) {
+            for (card of cards) {
+                card.style.left = -left + "%";
+            }
+        }
+        
+        function checkArrowVisibility(pos) {
+            if (pos == 0) {
+                left_arrow.style.opacity = '0';
+            } else {
+                left_arrow.style.opacity = '1';
+            }
+            if (pos >= total_card_size) {
+                right_arrow.style.opacity = '0';
+            } else {
+                right_arrow.style.opacity = '1';
+            }
+        }
+        
+        // Fly To Shopping Cart Effect
+        
+        for (cart_btn of cart_btns) {
+            cart_btn.onclick = (e) => {
+        
+                shopping_cart.classList.add('active');
+        
+                let product_count = Number(shopping_cart.getAttribute('data-product-count')) || 0;
+                shopping_cart.setAttribute('data-product-count', product_count + 1);
+        
+                // finding first grand parent of target button 
+                let target_parent = e.target.parentNode.parentNode.parentNode;
+                target_parent.style.zIndex = "100";
+                // Creating separate Image
+                let img = target_parent.querySelector('img');
+                let flying_img = img.cloneNode();
+                flying_img.classList.add('flying-img');
+        
+                target_parent.appendChild(flying_img);
+        
+                // Finding position of flying image
+        
+                const flying_img_pos = flying_img.getBoundingClientRect();
+                const shopping_cart_pos = shopping_cart.getBoundingClientRect();
+        
+                let data = {
+                    left: shopping_cart_pos.left - (shopping_cart_pos.width / 2 + flying_img_pos.left + flying_img_pos.width / 2),
+                    top: shopping_cart_pos.bottom - flying_img_pos.bottom + 30
+                }
+        
+                console.log(data.top);
+        
+                flying_img.style.cssText = `
+                                        --left : ${data.left.toFixed(2)}px;
+                                        --top : ${data.top.toFixed(2)}px;
+                                        `;
+        
+        
+                setTimeout(() => {
+                    target_parent.style.zIndex = "";
+                    target_parent.removeChild(flying_img);
+                    shopping_cart.classList.remove('active');
+                }, 1000);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+    const feedbackForm = document.getElementById('feedbackForm');
+
+    yesButton.addEventListener('click', function() {
+        // Disable the "Did you find what you were looking for?" section
+        document.querySelector('.feedback-section').style.display = 'none';
+    });
+
+    noButton.addEventListener('click', function() {
+        // Show the feedback form
+        feedbackForm.style.display = 'block';
+
+        // Optionally, you can hide the "Did you find what you were looking for?" section
+        document.querySelector('.feedback-section').style.display = 'none';
+    });
+});
+    </script>
+</body>
+
+
+</html>
